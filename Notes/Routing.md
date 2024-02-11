@@ -15,3 +15,6 @@
 ### 2 types Routing in web apps
 - Client Side Routing (everything is loaded just route it) 
 - Server Side Routing  ( Network call are made )
+
+### UseParam
+- use Parameter passed in the url

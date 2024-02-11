@@ -3,6 +3,8 @@
 
 <!-- > Check Optional Chaining in JS -->
 
+- We Can Write js like ["card"] which is similar to list.card ...
+
 ### Header
 - Logo
 - Nav

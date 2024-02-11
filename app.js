@@ -1,21 +1,37 @@
-import React from "react"; // from Node Module
-import ReactDOM from "react-dom";
-import Header from "./components/Header"; // Header.js 
-import BodyComponent from "./components/Body";
+import React, { lazy , Suspense, useEffect, useState} from "react"; // from Node Module
+import ReactDOM from "react-dom/client";
+import Header from "./src/components/Header"; // Header.js 
+import BodyComponent from "./src/components/Body";
 import { createBrowserRouter , RouterProvider , Outlet} from "react-router-dom";
-import About from "./components/About";
-import ContactUs from "./components/ContactUs";
-import Error from "./components/Error";
+import About from "./src/components/About";
+import ContactUs from "./src/components/ContactUs";
+import Error from "./src/components/Error";
+import RestaurantMenu from "./src/components/RestaurantMenu";
+import userContext from "./src/utils/UserContext";
 
 const AppLayout = () => {
+
+    // You want to modify the userInfoAfter the login
+    const [userName , setUserName ] = useState();
+    useEffect(() => {
+        const data = {
+            name : "Sanchit"
+        }
+        setUserName(data.name);
+    }, [])
     return(
         <div className="app">
-            <Header />
-            {/* Outlet manages the children routes */}
-            <Outlet /> 
-        </div>
+            <userContext.Provider value={{ loggedInUser : userName , setUserName }}>
+                <Header />
+                {/* Outlet manages the children routes */}
+                <Outlet /> 
+            </userContext.Provider>
+         </div>
     )
 };
+
+
+const Grocery = lazy(() => import("./src/components/Grocery"));
 
 const appRouter = createBrowserRouter([
     {
@@ -33,6 +49,18 @@ const appRouter = createBrowserRouter([
             {
                 path:"/contact",
                 element:<ContactUs />
+            },
+            {
+                path:"/grocery",
+                // till the Grocery gets loaded the fallback gets trigered
+                // it can load in chunks
+                element:<Suspense fallback ={<h1>Loading.....</h1>}> 
+                            <Grocery />
+                        </Suspense>
+            },
+            {
+                path:"/restaurant/:id" ,
+                element:<RestaurantMenu />
             }
         ],
         errorElement: <Error />
