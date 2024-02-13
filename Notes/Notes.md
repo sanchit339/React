@@ -22,6 +22,7 @@
 > You can also provide css through js object
 
 ### What are Components
+- EX : const component_name = (props) => {  return }
 - JS Functions which return JSX
 - Components render the div's 
 

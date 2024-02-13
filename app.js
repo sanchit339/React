@@ -8,6 +8,9 @@ import ContactUs from "./src/components/ContactUs";
 import Error from "./src/components/Error";
 import RestaurantMenu from "./src/components/RestaurantMenu";
 import userContext from "./src/utils/UserContext";
+import { Provider } from "react-redux"
+import appStore from "./src/utils/appStore";
+import Cart from "./src/components/Cart";
 
 const AppLayout = () => {
 
@@ -19,14 +22,18 @@ const AppLayout = () => {
         }
         setUserName(data.name);
     }, [])
+
     return(
+        // Takes Store as props -> just like the context provider we have redux store provider
         <div className="app">
-            <userContext.Provider value={{ loggedInUser : userName , setUserName }}>
-                <Header />
-                {/* Outlet manages the children routes */}
-                <Outlet /> 
-            </userContext.Provider>
-         </div>
+            <Provider store={ appStore }> 
+                <userContext.Provider value={{ loggedInUser : userName , setUserName }}>
+                    <Header />
+                    {/* Outlet manages the children routes */}
+                    <Outlet /> 
+                </userContext.Provider>
+            </Provider>
+        </div>
     )
 };
 
@@ -54,9 +61,15 @@ const appRouter = createBrowserRouter([
                 path:"/grocery",
                 // till the Grocery gets loaded the fallback gets trigered
                 // it can load in chunks
-                element:<Suspense fallback ={<h1>Loading.....</h1>}> 
+                element:(
+                    <Suspense fallback ={<h1>Loading.....</h1>}> 
                             <Grocery />
-                        </Suspense>
+                    </Suspense>
+                ),
+            },
+            {
+                path:"/cart",
+                element: <Cart />
             },
             {
                 path:"/restaurant/:id" ,

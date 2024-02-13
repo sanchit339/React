@@ -1,0 +1,11 @@
+### Types of testing (devloper)
+- Unit Testing
+- Integration Testing
+- End to End Testing - e2e testing
+- Configure Babel
+- Configure Parcel Config file to disable default babel transpilation
+- Jest Configuration (npx jest --init)
+- we use JSDOM for testing
+- JSDOM is a library which parses and interacts with assembled HTML just like a browser..
+- Intall the JSDOM library
+- Create __test__(Dunder Method) folder inside the components // name files as fileName.[test.js] imp

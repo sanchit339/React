@@ -2,15 +2,13 @@ import ItemList from "./ItemList";
 
 
 const RestoAccordian = ({ resData , showItems , setShowIndex}) => { 
-    console.log(showItems);
     const handleClick = () => {
         // setItemData(!itemData)
-        if(showItems){
+        // if(showItems){
             setShowIndex();
-        }
-        showItems = !showItems;
+        // }
+        // showItems = !showItems;
     }
-    console.log("after" + showItems);
     return (
         <div className=" w-6/12 mx-auto my-4 p-4 shadow-lg rounded-lg hover:scale-105 hover:transition-[5s]">
             {resData?.title  ? (

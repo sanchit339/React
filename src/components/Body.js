@@ -73,7 +73,6 @@ const BodyComponent = () => {
                     </button>
                     <button className="px-2 py-1 bg-amber-200 rounded-lg"
                         onClick={() => {
-                        console.log("btn-clicked")
                         const newData = filterResto.restaurants.filter(
                                 hotel => hotel.info.avgRating >= (4.0)
                         )
@@ -95,7 +94,6 @@ const BodyComponent = () => {
                 {
                     filterResto.restaurants.map((resto) =>(
                         // key helps to render properly
-                        // console.log(resto)
                         <Link to={"restaurant/" + resto.info.id} key = {resto.info.id}>
                             <RestoCard  resData={resto.info}/>
                         </Link> // always provide the key

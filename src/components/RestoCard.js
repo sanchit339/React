@@ -19,8 +19,8 @@ const RestoCard = ({resData}) => { // you can pass props else ({resName , cuisin
                 src = {swiggy_img + cloudinaryImageId}
                 alt="" />
             <h3 className="py-2 font-bold">{name}</h3>
-            <h3>{cuisines[0]}, {cuisines[1]}</h3>
-            <h3>{avgRating}</h3>
+            <h3 className=" font-thin">{cuisines[0]}, {cuisines[1]}</h3>
+            <h3> ✳️ {avgRating}</h3>
             <h3>{ costForTwo }</h3>
             <h5 className="font-thin">context : {loggedInUser}</h5>
         </div>

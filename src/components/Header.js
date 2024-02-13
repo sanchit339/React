@@ -3,11 +3,15 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import userContext from "../utils/UserContext";
+import { useSelector } from "react-redux"
 
 const Header = () =>{
     const [loginBtn , setLogout] = useState("Login");
     const {loggedInUser} = useContext(userContext);
     const onlineStatus = useOnlineStatus();
+
+    const cartItems = useSelector((store) => store.cart.items); // provide what you want to access
+
     return(
         <div className="flex justify-between shadow-md">
             <div className="image">
@@ -27,11 +31,11 @@ const Header = () =>{
                     <li className="px-2">
                         <Link to="/contact"> ContactUs </Link>
                     </li>
-                    <li className="px-2">
+                    <li className="px-2 ">
                         <Link to="/grocery"> Grocery </Link>
                     </li>
-                    <li className="px-2">
-                        Cart
+                    <li className="px-2 font-bold">
+                        <Link to="/cart">Cart 🛒 ({cartItems.length})</Link>
                     </li>
 
                     <button
