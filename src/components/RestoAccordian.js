@@ -10,7 +10,7 @@ const RestoAccordian = ({ resData , showItems , setShowIndex}) => {
         // showItems = !showItems;
     }
     return (
-        <div className=" w-6/12 mx-auto my-4 p-4 shadow-lg rounded-lg hover:scale-105 hover:transition-[5s]">
+        <div className=" w-6/12 mx-auto my-4 p-4 shadow-lg rounded-lg hover:scale-95 hover:transition-[5s]">
             {resData?.title  ? (
                 <div className="flex justify-between cursor-pointer" onClick={handleClick}>
                     <span className=" font-bold">

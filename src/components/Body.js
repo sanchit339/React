@@ -32,7 +32,8 @@ const BodyComponent = () => {
         // Fetch will return a promise
         const data1 = await fetch(SWIGGY_API)
         const json = await data1.json();
-
+        console.log(data1);
+        console.log(json + " hELLO WORLD");
         // We use the optional Chaining to handle this data
         setData(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle);
         setFilterResto(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle);
@@ -46,11 +47,12 @@ const BodyComponent = () => {
         ) 
 
     // Conditional Rendering
-    return (currData.restaurants ?? []).length === 0 ? (
+    console.log(filterResto.restaurants);
+    return (!filterResto.restaurants || filterResto.restaurants.length === 0) ? (
         <Shimmer />
-    ):(
-        <div className="body">
-            <div className="filter flex p-2 m-2">
+    ) : (
+        <div className="body my-1">
+            <div className="filter flex p-2 justify-center">
                 <div className="search space-x-1" >
                     {/* here we want to pass to text inside the search to backend */}
                     <input type="text" className="border border-solid border-black m-2 rounded-md pl-2" 
@@ -63,7 +65,7 @@ const BodyComponent = () => {
                     <button className="px-2 py-1 bg-green-300 rounded-lg"
                         onClick={() => {
                             // filter the results
-                            const searchHotels = currData.restaurants.filter((res) => 
+                            const searchHotels = filterResto.restaurants.filter((res) => 
                                 res.info.cuisines[0].toLowerCase().includes(searchText.toLowerCase())
                             ) 
                             setFilterResto({ restaurants: searchHotels });
@@ -71,7 +73,7 @@ const BodyComponent = () => {
                     > 
                     Search   
                     </button>
-                    <button className="px-2 py-1 bg-amber-200 rounded-lg"
+                    <button className="px-2 py-1 bg-orange-500 rounded-lg"
                         onClick={() => {
                         const newData = filterResto.restaurants.filter(
                                 hotel => hotel.info.avgRating >= (4.0)
@@ -81,7 +83,8 @@ const BodyComponent = () => {
                         >Top rated Resto's
                     </button>
                     <label className="font-thin"> UserName : </label>
-                    <input type="text" className="border border-black px-2" 
+                    <input type="text" className="border border-black px-2 rounded-md" 
+                        placeholder="Context Implement"
                         onChange={(e) =>{
                             value = {loggedInUser}
                             setUserName(e.target.value)
@@ -89,7 +92,7 @@ const BodyComponent = () => {
                     />
                 </div>
             </div>
-            <div className="resto-container flex flex-wrap">
+            <div className="resto-container flex justify-center flex-wrap mx-32">
                 {/* Passing Props */}
                 {
                     filterResto.restaurants.map((resto) =>(

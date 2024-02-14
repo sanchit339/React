@@ -13,11 +13,11 @@ const Header = () =>{
     const cartItems = useSelector((store) => store.cart.items); // provide what you want to access
 
     return(
-        <div className="flex justify-between shadow-md">
-            <div className="image">
-                <img className=" w-36 " src= {IMG_URL} ></img>
+        <div className="flex justify-between shadow-md ">
+            <div className="image mx-56">
+                <Link to="/"><img className=" w-10 my-4 " src= {IMG_URL} ></img></Link>
             </div>
-            <div className="flex items-center">
+            <div className="flex items-center mx-48">
                 <ul className="flex p-4 m-4">
                     <li className="px-2">
                         Online Status : {onlineStatus ? "✅" : "⛔️"}
@@ -28,13 +28,10 @@ const Header = () =>{
                     <li className="px-2">
                         <Link to="/about"> About Us </Link>
                     </li>
-                    <li className="px-2">
-                        <Link to="/contact"> ContactUs </Link>
-                    </li>
                     <li className="px-2 ">
                         <Link to="/grocery"> Grocery </Link>
                     </li>
-                    <li className="px-2 font-bold">
+                    <li className="px-2 ">
                         <Link to="/cart">Cart 🛒 ({cartItems.length})</Link>
                     </li>
 

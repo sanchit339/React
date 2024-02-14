@@ -28,24 +28,27 @@ const RestaurantMenu = () => {
 
     const {name , cuisines , avgRating , costForTwo , cloudinaryImageId} = restaurantInfo;
     return resData === null ? ( <Shimmer /> ) : (
-        <div className=" text-center ">
-            <div className="card">
+        <div className="text-center">
+            <div className="card my-2">
                 <div>
-                    <div>
+                    <div className="">
                         <h3 className="font-bold">{name}</h3>
                         <h3 className="font-light">{cuisines.join(',')}</h3>
                     </div>
                         <h3 className="font-light">₹{ costForTwo / 100 } for two</h3>
                 </div>
-                <h3>{avgRating}</h3>
+                <h3> ✳️ {avgRating}</h3>
                 {/* <img className=" w-24"
                     src = {swiggy_img + cloudinaryImageId}
                     alt="" /> */}
             
-                <ul className="">
+                <ul className="flex justify-center space-x-6">
                     {Recommended.map((offer) => (
-                        <li key={offer.restId} className="p-4">
+                        <li key={offer.restId} className="p-2 border border-gray-200 shadow-md rounded-md text-xs">
                             {offer.info.header}
+                            <div className="font-thin text-xs">
+                                {offer.info.couponCode} {" | "} {offer.info.description}
+                            </div>
                         </li>
                     ))}
                 </ul>

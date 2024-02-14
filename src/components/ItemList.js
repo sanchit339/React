@@ -1,8 +1,9 @@
 import { swiggy_img } from "../utils/constants"
 import { useDispatch } from "react-redux"
 import { addItem } from "../utils/cartSlice";
+import { useState } from "react";
 
-const ItemList = ({items}) => {
+const ItemList = ({items , setCartPrice}) => {
 
     const dispatch = useDispatch();
     const HandleAddItem = (item) => {
@@ -38,7 +39,7 @@ const ItemList = ({items}) => {
                                 Add +
                             </button>
                         </div>
-                        <img src={swiggy_img + item?.card?.info?.imageId} className="w-20 rounded-xl"/>
+                        <img src={swiggy_img + item?.card?.info?.imageId} className="w-20 rounded-xl shadow-lg"/>
                     </div>
                 </div>
             ))}

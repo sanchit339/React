@@ -9,19 +9,18 @@ import userContext from "../utils/UserContext";
 // }
 
 const RestoCard = ({resData}) => { // you can pass props else ({resName , cuisine}) --> Destructure
-    const {name , cuisines , avgRating , costForTwo , cloudinaryImageId} = resData;
+    const {name , cuisines , avgRating , cloudinaryImageId , sla} = resData;
     const { loggedInUser } = useContext( userContext );
     // Manual DeStr 
     return (
-        <div className="m-4 p-4 w-72 rounded-2xl bg-[#F0F8FF] hover:scale-95 hover:transition-[5s] object-cover">
+        <div className="m-4 p-4 w-72 rounded-2xl bg-[#F0F8FF] hover:scale-95 hover:transition-[5s] object-cover shadow-md">
             <img 
-                className="food-logo rounded-2xl h-64 w-64"
+                className="food-logo rounded-2xl h-48 w-full object-cover object-center"
                 src = {swiggy_img + cloudinaryImageId}
                 alt="" />
             <h3 className="py-2 font-bold">{name}</h3>
+            <h3> ✳️ {avgRating} {"• " + sla.slaString }</h3>
             <h3 className=" font-thin">{cuisines[0]}, {cuisines[1]}</h3>
-            <h3> ✳️ {avgRating}</h3>
-            <h3>{ costForTwo }</h3>
             <h5 className="font-thin">context : {loggedInUser}</h5>
         </div>
     )

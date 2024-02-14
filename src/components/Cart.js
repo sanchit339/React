@@ -6,7 +6,6 @@ import { clearCart } from "../utils/cartSlice";
 const Cart = () => {
     // Subscribe the Store (to a Specific portion of the Store)
     const cartItems = useSelector((store) => store.cart.items); 
-
     const dispatch = useDispatch();
     const dispatchEvent = () => {
         dispatch(clearCart()); // dispatch + reducer form the cartSlice
@@ -23,7 +22,9 @@ const Cart = () => {
                 { cartItems.length === 0 && (
                     <h1>Cart is Empty, Please add something</h1>
                 )}
-                <ItemList items = {cartItems}/>
+                <ItemList items = {cartItems}
+                    setCartPrice = {() => setCartPrice(cartPrice)}
+                />
             </div>
         </div>
     )
